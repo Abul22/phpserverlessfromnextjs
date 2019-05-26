@@ -213,7 +213,7 @@
     
     <?php 
     
-    echo 'M  ooh..give a GET q=? ';
+    echo 'M2  ooh..give a GET q=? ';
 
 if(isset($_GET['q']) ){
   print_r($_GET['q']);
@@ -332,7 +332,7 @@ var clientKeys = nacl.box.keyPair();
 		   
 		   
   // log this server's address
-  log("address:", b.address());
+  log("B:address:", b.address());
   log("announcing...");
   /*** rpc calls ***/
   // simple "ping" rpc call
@@ -385,14 +385,17 @@ b.register("joinMyRoom", function(address, args, cb) {
     // {"hello": "world", "pong": true}
     // also check result.error
   });
-});
 
-  b.rpc("pang", {"hayo": "gayo"}, function(result) {
+	  
+	  b.rpc("pang", {"hayo": "gayo"}, function(result) {
     console.log(result);
     // {"hello": "world", "pong": true}
     // also check result.error
   });
   
+	  
+  
+  
   
 
 		   
@@ -400,14 +403,6 @@ b.register("joinMyRoom", function(address, args, cb) {
 		   
 		   
   
-  // simple logging function
-  function log() {
-    var args = Array.prototype.slice.call(arguments);
-    console.log.apply(null, args);
-    args = args.map(function(a) { if (typeof(a) == "string") return a; else return JSON.stringify(a); });
-    document.getElementById("log").textContent += args.join(" ") + "\n";
-  }
-
 		   
 b.rpc("joinMyRoom", {"room": b.address()}, function(result) {
     //PrivateRoom()
@@ -418,10 +413,13 @@ b.rpc("joinMyRoom", {"room": b.address()}, function(result) {
   });	   
 		   
 		   
-	   
+  });
+		   
+		   
 		   
 var c = new Bugout();
-		   
+log('madeC: ',c.address());
+PrivateRoom('');
 function PrivateRoom(newRoomKey=''){
        if(newRoomKey){
        	c = new Bugout(newRoomKey);
@@ -447,7 +445,7 @@ function PrivateRoom(newRoomKey=''){
   /*** logging ***/
   // log when network connectivity changes
   c.on("connections", function(c) {
-    log("connections:", c);
+    log("C:connections:", c);
     if (c == 0) {
       log("ready");
     }
