@@ -333,7 +333,7 @@ var clientKeys = nacl.box.keyPair();
 		   
   // log this server's address
   log("B:address:", b.address());
-  log("announcing...");
+  log("announcingB...");
   /*** rpc calls ***/
   // simple "ping" rpc call
   b.register("pang", function(address, args, cb) {
