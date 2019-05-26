@@ -239,10 +239,18 @@ if(isset($_GET['e']) ){
 $end = $_GET['e'];
 }
 $i=$start;
+$howMany =0;
 while ($i<=$end) {
-    if (is_prime_via_preg_expanded($i)) echo $i." <br />\n";
+    if (is_prime_via_preg_expanded($i)) {
+    $howMany++;
+    
+    if($end - $i < 10){
+      echo $i." <br />\n"; 
+    }
+    }
     $i++;
 }
+echo 'there were ' . $howMany . ' primes';
 echo '<br> ending time: <br>';
 echo time();
     
@@ -307,20 +315,28 @@ var clientKeys = nacl.box.keyPair();
         
            <script type="text/javascript" >
         
-        var b = new Bugout({seed: localStorage["bugout-demo-seed"]});
+        //var b = new Bugout({seed: localStorage["bugout-demo-seed"]});
+		   
+	// and others need to connect with the address given. this guy is server.
+	//var b = new Bugout();
+		   
+	//All peers connecting to same swarm. No server..but all can see and connect each other.
+	var b = new Bugout('sailing');
         
         // or if client... with address() of server
         //var b = new Bugout('bSfWZRxyTyif3qxHogyim8dk2b7F1iKvqc');
         
         
   // save the seed for next time
-  localStorage["bugout-demo-seed"] = b.seed;
+//   localStorage["bugout-demo-seed"] = b.seed;
+		   
+		   
   // log this server's address
   log("address:", b.address());
   log("announcing...");
   /*** rpc calls ***/
   // simple "ping" rpc call
-  b.register("ping", function(address, args, cb) {
+  b.register("pang", function(address, args, cb) {
     args["pong"] = Math.random();
     cb(args);
   });
@@ -329,6 +345,14 @@ var clientKeys = nacl.box.keyPair();
     args["pong"] = Math.random();
     cb(args);
   });
+		   
+		   
+b.register("joinMyRoom", function(address, args, cb) {
+    	console.log('idk');
+	console.log(args)
+	cb(args);
+  });
+
   // register your RPC calls for clients here
   /*** logging ***/
   // log when network connectivity changes
@@ -363,11 +387,18 @@ var clientKeys = nacl.box.keyPair();
   });
 });
 
+  b.rpc("pang", {"hayo": "gayo"}, function(result) {
+    console.log(result);
+    // {"hello": "world", "pong": true}
+    // also check result.error
+  });
   
   
-  
-  
-  
+
+		   
+		   
+		   
+		   
   
   // simple logging function
   function log() {
@@ -377,6 +408,100 @@ var clientKeys = nacl.box.keyPair();
     document.getElementById("log").textContent += args.join(" ") + "\n";
   }
 
+		   
+b.rpc("joinMyRoom", {"room": b.address()}, function(result) {
+    //PrivateRoom()
+	console.log('wtf');
+	console.log(result);
+    // {"hello": "world", "pong": true}
+    // also check result.error
+  });	   
+		   
+		   
+	   
+		   
+var c = new Bugout();
+		   
+function PrivateRoom(newRoomKey=''){
+       if(newRoomKey){
+       	c = new Bugout(newRoomKey);
+       }
+	
+  
+		   
+  // log this server's address
+  log("Caddress:", c.address());
+  log("Cannouncing...");
+  /*** rpc calls ***/
+  // simple "ping" rpc call
+  c.register("ping", function(address, args, cb) {
+    args["pong"] = Math.random();
+    cb(args);
+  });
+  
+  c.register("ping", function(address, args, cb) {
+    args["pong"] = Math.random();
+    cb(args);
+  });
+  // register your RPC calls for clients here
+  /*** logging ***/
+  // log when network connectivity changes
+  c.on("connections", function(c) {
+    log("connections:", c);
+    if (c == 0) {
+      log("ready");
+    }
+  });
+  // log when a client sends a message
+  c.on("message", function(address, msg) { log("cmessage:", address, msg); });
+  // log when a client makes an rpc call
+  c.on("rpc", function(address, call, args) { log("crpc:", address, call, args); });
+  // log when we see a new client address
+  c.on("seen", function(address) { log("cseen:", address); });
+  
+  
+  
+  
+  
+  
+  
+  //client
+  
+  c.on("server", function(address) {
+  // once we can see the server
+  // make an API call on it
+  c.rpc("ping", {"h2ello": "wor2ld"}, function(result) {
+    console.log(result);
+    // {"hello": "world", "pong": true}
+    // also check result.error
+  });
+});
+	   
+		   
+		   
+}
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
           
             var key;
             
