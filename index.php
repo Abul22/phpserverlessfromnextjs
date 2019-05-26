@@ -332,7 +332,7 @@ var clientKeys = nacl.box.keyPair();
 		   
 		   
   // log this server's address
-  log("B:address:", b.address());
+  log("1B:address:", b.address());
   log("announcing...");
   /*** rpc calls ***/
   // simple "ping" rpc call
