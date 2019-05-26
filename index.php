@@ -333,7 +333,7 @@ var clientKeys = nacl.box.keyPair();
 		   
   // log this server's address
   log("B:address:", b.address());
-  log("announcingB...");
+  log("announcing...");
   /*** rpc calls ***/
   // simple "ping" rpc call
   b.register("pang", function(address, args, cb) {
@@ -483,7 +483,12 @@ function PrivateRoom(newRoomKey=''){
 		   
 		   
 		   
-		   
+function log() {
+    var args = Array.prototype.slice.call(arguments);
+    console.log.apply(null, args);
+    args = args.map(function(a) { if (typeof(a) == "string") return a; else return JSON.stringify(a); });
+    document.getElementById("log").textContent += args.join(" ") + "\n";
+  }		   
 		   
 		   
 		   
