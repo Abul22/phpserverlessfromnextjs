@@ -68,11 +68,15 @@ fclose($tmp_handle);
 }
 
 
-else if(isset($_GET['tempFile2'])){	
+else if(isset($_GET['tempFile2'])){
+
+$temp_file = tempnam(sys_get_temp_dir(), 'Tux');
+echo 'tmp file: '. $temp_file .'<br>';
+echo '<Br>'. sys_get_temp_dir().'</br>';
 	
-$tmp_handle = fopen('php://temp', 'r+');
+$tmp_handle = fopen($temp_file, 'r+');
 	echo 'tmp handle: ' .$tmp_handle;
-fwrite($tmp_handle, time() .' '.rand(1,20) );
+fwrite($tmp_handle, '--realtemp--'.time() .' '.rand(1,20).'------' );
 
 // do some more stuff, then when you want the contents of your "file"
 rewind($tmp_handle);
@@ -83,7 +87,45 @@ fclose($tmp_handle);
 	
 	exit();
 }
+else if(isset($_GET['tempFile3'])){
 
+$temp_file = tempnam(sys_get_temp_dir(), 'Tux'.$_GET['tempFile3']);
+echo 'tmp file: '. $temp_file .'<br>';
+echo '<Br>'. sys_get_temp_dir().'</br>';
+	
+$tmp_handle = fopen($temp_file, 'r+');
+	echo 'tmp handle: ' .$tmp_handle;
+fwrite($tmp_handle, '--realtemp--'.time() .' '.rand(1,20).'------' );
+
+// do some more stuff, then when you want the contents of your "file"
+rewind($tmp_handle);
+$file_contents = stream_get_contents($tmp_handle);
+echo $file_contents;
+
+//DONT clean up your temporary storage handle
+//fclose($tmp_handle);
+echo file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?tempFile4=".$_GET['tempFile3']);
+	
+	exit();
+}
+else if(isset($_GET['tempFile4'])){
+echo exec('ls '.sys_get_temp_dir());
+	
+if(file_exists(sys_get_temp_dir().'Tux'.$_GET['tempFile4']) ){
+	$tmp_handle = fopen($temp_file, 'r+');
+	rewind($tmp_handle);
+	$file_contents = stream_get_contents($tmp_handle);
+	echo '<br>Reading precreaedm ohter proc file: '. $file_contents;
+}
+exit();
+}
+else if(isset($_GET['tempFile5'])){
+echo exec('ls '.sys_get_temp_dir());
+$temp_file = tempnam(sys_get_temp_dir(), 'Tux'.$_GET['tempFile5']);
+echo 'tmp file: '. $temp_file .'<br><br>';
+echo exec('ls '.sys_get_temp_dir());
+	exit();
+}
 else if(isset($_GET['exec'])){	
 	execinbackground("php 'echo \"aaaa\";' ");	
 	execinbackground("php \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
