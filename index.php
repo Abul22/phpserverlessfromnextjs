@@ -1,5 +1,5 @@
 <?php
-
+/*
 if(isset($_GET['nestedServerless'])){
 	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
 	exit();
@@ -20,7 +20,32 @@ if(isset($_GET['derpNum'])){
 	echo 'finanllly: ' . $result;
 	exit();
 }
+*/
+<?php
 
+if(isset($_GET['nestedServerless'])){
+	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
+	exit();
+}
+
+if(isset($_GET['derpNum'])){
+	$result = '...';
+	for($i=0; $i < $_GET['derpNum']; $i++){
+		$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?nestedServerless=".$i);
+	}
+	echo $result;
+	exit();	
+}else if(isset($_GET['derpNumTwo'])){
+
+	$derp = (isset($_GET['derpNumTwo']) ? $_GET['derpNumTwo'] : 3);
+	$result = file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".$derp);
+	
+	echo 'finanllly: ' . $result;
+	exit();
+}
+
+
+?>
 
 ?>
 
