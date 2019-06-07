@@ -21,7 +21,7 @@ if(isset($_GET['derpNum'])){
 	exit();
 }
 */
-<?php
+
 
 if(isset($_GET['nestedServerless'])){
 	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
@@ -47,7 +47,7 @@ if(isset($_GET['derpNum'])){
 
 ?>
 
-?>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
