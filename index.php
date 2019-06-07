@@ -112,6 +112,7 @@ else if(isset($_GET['tempFile4'])){
 echo exec('ls '.sys_get_temp_dir());
 	
 if(file_exists(sys_get_temp_dir().'Tux'.$_GET['tempFile4']) ){
+	$temp_file=sys_get_temp_dir().'Tux'.$_GET['tempFile4'];
 	$tmp_handle = fopen($temp_file, 'r+');
 	rewind($tmp_handle);
 	$file_contents = stream_get_contents($tmp_handle);
@@ -120,11 +121,22 @@ if(file_exists(sys_get_temp_dir().'Tux'.$_GET['tempFile4']) ){
 exit();
 }
 else if(isset($_GET['tempFile5'])){
-echo exec('ls '.sys_get_temp_dir());
+'ls '.sys_get_temp_dir());
 $temp_file = tempnam(sys_get_temp_dir(), 'Tux'.$_GET['tempFile5']);
 echo 'tmp file: '. $temp_file .'<br><br>';
 echo exec('ls '.sys_get_temp_dir());
 	exit();
+}
+else if(isset($_GET['tempFile6'])){
+//echo exec('ls '.sys_get_temp_dir());
+$c = `ls -la`;
+	echo $c .'<Br>';
+	$c= `ls -la /tmp/`;
+	echo $c .'<Br>';
+	$c = sys_get_temp_dir();
+	echo $c .'<Br>';
+	$c= `ls -la {$c}`;
+	echo $c .'<Br>';
 }
 else if(isset($_GET['exec'])){	
 	execinbackground("php 'echo \"aaaa\";' ");	
