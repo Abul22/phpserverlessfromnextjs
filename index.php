@@ -42,6 +42,16 @@ else if(isset($_GET['wsLocalAsync3'])){
 	echo $a;
 	exit();
 }
+if(isset($_GET['wsLocalAsync3'])){
+	$result = '...';
+	echo async_curl('http://121.211.53.142/websocket.php');
+	for($i=0; $i < $_GET['derpNum']; $i++){
+		$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?nestedServerless=".$i);
+	}
+
+	exit();	
+}
+
 else if(isset($_GET['tempFile'])){	
 	
 $tmp_handle = fopen('php://temp', 'r+');
