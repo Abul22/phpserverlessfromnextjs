@@ -151,7 +151,7 @@ else if(isset($_GET['ls'])){
 //echo exec('ls '.sys_get_temp_dir());
 	echo '<pre>';
 echo $_GET['tempFile7'].'<Br><Br>';
-$c = `ls -la {$_GET['tempFile7']}`;
+$c = `ls -la {$_GET['ls']}`;
 	echo $c .'<Br><Br>';	
 	echo '</pre>';
 	exit();
