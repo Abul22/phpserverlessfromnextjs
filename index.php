@@ -103,8 +103,9 @@ function execinbackground($cmd) {
         exec($cmd . " > /dev/null &");   
     } 
 } 
-fwite(fopen("urls.txt","w"),implode("\n",$urls);
-execinbackground("nodejs urlscript.js urls.txt");
+//fwite(fopen("urls.txt","w"),implode("\n",$urls);
+//execinbackground("nodejs urlscript.js urls.txt");
+///do rand shiz
 
 
       //dont work seemingly.
