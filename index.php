@@ -38,9 +38,11 @@ if(isset($_GET['derpNum'])){
 }else if(isset($_GET['derpNumTwo'])){
 
 	$derp = (isset($_GET['derpNumTwo']) ? $_GET['derpNumTwo'] : 3);
-	$result = file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".$derp);
-	
-	echo 'finanllly: ' . $result;
+	$result='';
+	for($i=0; $i < $_GET['derpNum']; $i++){
+	$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".$i);
+	}
+	echo 'DoubleNest::::<br> ' . $result;
 	exit();
 }
 
