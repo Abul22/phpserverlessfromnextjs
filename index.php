@@ -88,6 +88,17 @@ else if(isset($_GET['exec2'])){
 	exit();
 }
 
+else if(isset($_GET['exec3'])){	
+	
+	execinbackground("curl http://121.211.53.142/websocket.php");
+	//kill some time to keep alive incase it finishing is what stops the instance...
+	$result ='';
+	$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".'2');
+	sleep(4)
+		echo 'doneExec3 ' . $result;
+	exit();
+}
+
 
 
 
