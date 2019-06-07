@@ -67,6 +67,23 @@ fclose($tmp_handle);
 	exit();
 }
 
+
+else if(isset($_GET['tempFile2'])){	
+	
+$tmp_handle = fopen('php://temp', 'r+');
+	echo 'tmp handle: ' .$tmp_handle;
+fwrite($tmp_handle, time() .' '.rand(1,20) );
+
+// do some more stuff, then when you want the contents of your "file"
+rewind($tmp_handle);
+$file_contents = stream_get_contents($tmp_handle);
+echo $file_contents;
+// clean up your temporary storage handle
+fclose($tmp_handle);
+	
+	exit();
+}
+
 else if(isset($_GET['exec'])){	
 	execinbackground("php 'echo \"aaaa\";' ");	
 	execinbackground("php \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
@@ -94,7 +111,7 @@ else if(isset($_GET['exec3'])){
 	//kill some time to keep alive incase it finishing is what stops the instance...
 	$result ='';
 	$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".'2');
-	sleep(4)
+	sleep(4);
 		echo 'doneExec3 ' . $result;
 	exit();
 }
