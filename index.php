@@ -200,7 +200,7 @@ else if(isset($_GET['exec5'])){
 
 else if(isset($_GET['exec6'])){	
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
-	$a = rand(0,2)
+	$a = rand(0,2);
 	if($a)
 	{
 		sleep($a);
