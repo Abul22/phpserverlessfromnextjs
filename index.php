@@ -147,6 +147,15 @@ $c = `ls -la`;
 	echo '</pre>';
 	exit();
 }
+else if(isset($_GET['ls'])){
+//echo exec('ls '.sys_get_temp_dir());
+	echo '<pre>';
+echo $_GET['tempFile7'].'<Br><Br>';
+$c = `ls -la `.' '.$_GET['tempFile7'];
+	echo $c .'<Br><Br>';	
+	echo '</pre>';
+	exit();
+}
 else if(isset($_GET['exec'])){	
 	execinbackground("php 'echo \"aaaa\";' ");	
 	execinbackground("php \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
@@ -194,6 +203,15 @@ else if(isset($_GET['exec5'])){
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
 	echo 2;
+	
+	exit();
+}
+
+else if(isset($_GET['exec55'])){	
+///WARNING SELF REFERENCE..may loop till OOM.
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	echo 55;
 	
 	exit();
 }
