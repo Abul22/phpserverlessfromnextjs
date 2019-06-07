@@ -195,6 +195,17 @@ else if(isset($_GET['exec5'])){
 	exit();
 }
 
+else if(isset($_GET['exec6'])){	
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec6=1");
+	if($_GET['exec6']>1)
+	{
+		sleep($_GET['exec6']-1);
+		echo 'sleepededed ' . $_GET['exec6']-1;
+	}
+	
+	echo 'yiss';	
+	exit();
+}
 
 
 //async_curl('http://example.com/background_process_1.php');
