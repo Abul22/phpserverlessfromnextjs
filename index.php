@@ -190,20 +190,21 @@ else if(isset($_GET['exec4'])){
 
 else if(isset($_GET['exec5'])){	
 
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
-	echo 1;
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
+	echo 2
 	
 	exit();
 }
 
 else if(isset($_GET['exec6'])){	
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec6=1");
-	if($_GET['exec6']>1)
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	$a = rand(0,2)
+	if($a)
 	{
-		sleep($_GET['exec6']-1);
-		echo 'sleepededed ' . ($_GET['exec6']-1);
+		sleep($a);
+		echo 'sleepededed ' . $a;
 	}
 	
 	echo 'yiss';	
