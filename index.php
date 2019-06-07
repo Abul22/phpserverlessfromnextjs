@@ -113,7 +113,7 @@ echo '<pre>';
 	echo exec('ls '.sys_get_temp_dir());
 	
 if(file_exists(sys_get_temp_dir().'/'.$_GET['tempFile4']) ){
-	$temp_file=sys_get_temp_dir().'/Tux'.$_GET['tempFile4'];
+	$temp_file=sys_get_temp_dir().'/'.$_GET['tempFile4'];
 	$tmp_handle = fopen($temp_file, 'r+');
 	rewind($tmp_handle);
 	$file_contents = stream_get_contents($tmp_handle);
@@ -193,7 +193,7 @@ else if(isset($_GET['exec5'])){
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
 	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec4=1");
-	echo 2
+	echo 2;
 	
 	exit();
 }
