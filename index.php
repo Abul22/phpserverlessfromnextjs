@@ -109,21 +109,24 @@ echo file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?tempF
 	exit();
 }
 else if(isset($_GET['tempFile4'])){
-echo exec('ls '.sys_get_temp_dir());
+echo '<pre>';
+	echo exec('ls '.sys_get_temp_dir());
 	
-if(file_exists(sys_get_temp_dir().'Tux'.$_GET['tempFile4']) ){
-	$temp_file=sys_get_temp_dir().'Tux'.$_GET['tempFile4'];
+if(file_exists(sys_get_temp_dir().'/'.$_GET['tempFile4']) ){
+	$temp_file=sys_get_temp_dir().'/Tux'.$_GET['tempFile4'];
 	$tmp_handle = fopen($temp_file, 'r+');
 	rewind($tmp_handle);
 	$file_contents = stream_get_contents($tmp_handle);
 	echo '<br>Reading precreaedm ohter proc file: '. $file_contents;
+	
+	echo '</pre>';
 }
 exit();
 }
 else if(isset($_GET['tempFile5'])){
 	echo '<pre>';
 echo exec('ls -la '.sys_get_temp_dir());
-$temp_file = tempnam(sys_get_temp_dir(), 'Tux'.$_GET['tempFile5']);
+$temp_file = tempnam(sys_get_temp_dir(),'/'.$_GET['tempFile5']);
 echo '<Br>tmp file: '. $temp_file .'<br><br>';
 echo exec('ls -la '.sys_get_temp_dir());
 	echo '</pre>';
@@ -200,7 +203,7 @@ else if(isset($_GET['exec6'])){
 	if($_GET['exec6']>1)
 	{
 		sleep($_GET['exec6']-1);
-		echo 'sleepededed ' . $_GET['exec6']-1;
+		echo 'sleepededed ' . ($_GET['exec6']-1);
 	}
 	
 	echo 'yiss';	
