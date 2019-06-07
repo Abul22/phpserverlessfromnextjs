@@ -1,27 +1,4 @@
 <?php
-/*
-if(isset($_GET['nestedServerless'])){
-	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
-	exit();
-}
-
-if(isset($_GET['derpNum'])){
-	$result = '...';
-	for($i=0; $i < $_GET['derpNum']; $i++){
-		$result .= file_get_contents("https://phpserverlessfromnextjs-git-c2.lukeluklus.now.sh/?nestedServerless=".$i);
-	}
-	echo $result;
-	exit();	
-}else if(isset($_GET['derpNumTwo'])){
-
-	$derp = (isset($_GET['derpNumTwo']) ? $_GET['derpNumTwo'] : 3);
-	$result = file_get_contents("https://phpserverlessfromnextjs-git-c2.lukeluklus.now.sh/?derpNum=".$derp);
-	
-	echo 'finanllly: ' . $result;
-	exit();
-}
-*/
-
 
 if(isset($_GET['nestedServerless'])){
 	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
@@ -39,12 +16,62 @@ if(isset($_GET['derpNum'])){
 
 	$derp = (isset($_GET['derpNumTwo']) ? $_GET['derpNumTwo'] : 3);
 	$result='';
-	for($i=0; $i < $_GET['derpNum']; $i++){
+	for($i=0; $i < $_GET['derpNumTwo']; $i++){
 	$result .= file_get_contents("https://phpserverlessfromnextjs.lukeluklus.now.sh/?derpNum=".$i);
 	}
 	echo 'DoubleNest::::<br> ' . $result;
 	exit();
+}else if(isset($_GET['wsLocal'])){
+	echo file_get_contents("http://121.211.53.142/websocket.php");
+	exit();
 }
+else if(isset($_GET['wsLocalAsync'])){
+	$a = '.';
+	$a .= async_curl('http://121.211.53.142/websocket.php');
+	echo $a;
+	exit();
+}
+else if(isset($_GET['wsLocalAsync2'])){	
+	async_curl('http://121.211.53.142/websocket.php');
+	exit();
+}
+
+
+
+
+//async_curl('http://example.com/background_process_1.php');
+
+
+
+
+
+
+function async_curl($background_process=''){
+
+    //-------------get curl contents----------------
+
+    $ch = curl_init($background_process);
+    curl_setopt_array($ch, array(
+        CURLOPT_HEADER => 0,
+        CURLOPT_RETURNTRANSFER =>true,
+        CURLOPT_NOSIGNAL => 1, //to timeout immediately if the value is < 1000 ms
+        CURLOPT_TIMEOUT_MS => 50, //The maximum number of mseconds to allow cURL functions to execute
+        CURLOPT_VERBOSE => 1,
+        CURLOPT_HEADER => 1
+    ));
+    $out = curl_exec($ch);
+
+    //-------------parse curl contents----------------
+
+    //$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    //$header = substr($out, 0, $header_size);
+    //$body = substr($out, $header_size);
+
+    curl_close($ch);
+
+    return true;
+}
+
 
 
 ?>
