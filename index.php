@@ -35,7 +35,43 @@ else if(isset($_GET['wsLocalAsync2'])){
 	async_curl('http://121.211.53.142/websocket.php');
 	exit();
 }
+else if(isset($_GET['wsLocalAsync3'])){	
+	$a = '.x.';
+	$a .= async_curl('http://121.211.53.142/websocket.php');
+	sleep(3);
+	echo $a;
+	exit();
+}
+else if(isset($_GET['tempFile'])){	
+	
+$tmp_handle = fopen('php://temp', 'r+');
+fwrite($tmp_handle, time() .' '.rand(1,20) );
 
+// do some more stuff, then when you want the contents of your "file"
+rewind($tmp_handle);
+$file_contents = stream_get_contents($tmp_handle);
+echo $file_contents;
+// clean up your temporary storage handle
+fclose($tmp_handle);
+	
+	exit();
+}
+
+else if(isset($_GET['tempFile2'])){	
+	
+$tmp_handle = fopen('php://temp', 'r+');
+fwrite($tmp_handle, time() .' '.rand(1,20) );
+
+// do some more stuff, then when you want the contents of your "file"
+rewind($tmp_handle);
+$file_contents = stream_get_contents($tmp_handle);
+	sleep(3);
+echo $file_contents;
+// clean up your temporary storage handle
+fclose($tmp_handle);
+	
+	exit();
+}
 
 
 
@@ -49,7 +85,7 @@ else if(isset($_GET['wsLocalAsync2'])){
 function async_curl($background_process=''){
 
     //-------------get curl contents----------------
-
+echo '<Br>inCurlFn<br>';
     $ch = curl_init($background_process);
     curl_setopt_array($ch, array(
         CURLOPT_HEADER => 0,
@@ -68,7 +104,7 @@ function async_curl($background_process=''){
     //$body = substr($out, $header_size);
 
     curl_close($ch);
-
+echo '<br>doneCurlFn<Br>';
     return true;
 }
 
