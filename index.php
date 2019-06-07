@@ -1,3 +1,30 @@
+<?php
+
+if(isset($_GET['nestedServerless'])){
+	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
+	exit();
+}
+
+if(isset($_GET['derpNum'])){
+	$result = '...';
+	for($i=0; $i < $_GET['derpNum']; $i++){
+		$result .= file_get_contents("https://phpserverlessfromnextjs-git-c2.lukeluklus.now.sh/?nestedServerless=".$i);
+	}
+	echo $result;
+	exit();	
+}else if(isset($_GET['derpNumTwo'])){
+
+	$derp = (isset($_GET['derpNumTwo']) ? $_GET['derpNumTwo'] : 3);
+	$result = file_get_contents("https://phpserverlessfromnextjs-git-c2.lukeluklus.now.sh/?derpNum=".$derp);
+	
+	echo 'finanllly: ' . $result;
+	exit();
+}
+
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <!--
