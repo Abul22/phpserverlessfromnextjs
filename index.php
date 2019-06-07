@@ -67,21 +67,27 @@ fclose($tmp_handle);
 	exit();
 }
 
-else if(isset($_GET['tempFile2'])){	
+else if(isset($_GET['exec'])){	
+	execinbackground("php 'echo \"aaaa\";' ");	
+	execinbackground("php \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
 	
-$tmp_handle = fopen('php://temp', 'r+');
-fwrite($tmp_handle, time() .' '.rand(1,20) );
-
-// do some more stuff, then when you want the contents of your "file"
-rewind($tmp_handle);
-$file_contents = stream_get_contents($tmp_handle);
-	sleep(3);
-echo $file_contents;
-// clean up your temporary storage handle
-fclose($tmp_handle);
+	execinbackground("php -r 'echo \"aaaa\";' ");	
+	execinbackground("php -r \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
 	
 	exit();
 }
+else if(isset($_GET['exec2'])){	
+	execinbackground("go-php 'echo \"aaaa\";' ");
+	
+	execinbackground("go-php \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
+	
+	execinbackground("go-php -r 'echo \"aaaa\";' ");
+	
+	execinbackground("go-php -r \"echo file_get_contents('http://121.211.53.142/websocket.php');\" ");
+	
+	exit();
+}
+
 
 
 
@@ -89,9 +95,19 @@ fclose($tmp_handle);
 
 
 
+function execinbackground($cmd) { 
+    if (substr(php_uname(), 0, 7) == "Windows"){ 
+        pclose(popen("start /B ". $cmd, "r"));  
+    } 
+    else { 
+        exec($cmd . " > /dev/null &");   
+    } 
+} 
+fwite(fopen("urls.txt","w"),implode("\n",$urls);
+execinbackground("nodejs urlscript.js urls.txt");
 
 
-
+      //dont work seemingly.
 function async_curl($background_process=''){
 
     //-------------get curl contents----------------
