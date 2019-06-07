@@ -148,7 +148,7 @@ else if(isset($_GET['exec2'])){
 }
 
 else if(isset($_GET['exec3'])){	
-	
+//WORKS!	
 	execinbackground("curl http://121.211.53.142/websocket.php");
 	//kill some time to keep alive incase it finishing is what stops the instance...
 	$result ='';
@@ -158,6 +158,24 @@ else if(isset($_GET['exec3'])){
 	exit();
 }
 
+else if(isset($_GET['exec4'])){	
+
+	echo execinbackground("curl http://121.211.53.142/websocket.php");
+	echo 1;
+	
+	exit();
+}
+
+
+else if(isset($_GET['exec5'])){	
+
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec5=1");
+	echo 1;
+	
+	exit();
+}
 
 
 
