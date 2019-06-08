@@ -1,5 +1,5 @@
 <?php
-
+echo '-';
 if(isset($_GET['nestedServerless'])){
 	echo 'nestedServerless resp:' . $_GET['nestedServerless']. ' rand: ('. rand() .') rand: ('. time() .') <br>';
 	exit();
