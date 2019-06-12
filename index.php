@@ -209,8 +209,8 @@ else if(isset($_GET['exec5'])){
 
 else if(isset($_GET['exec55'])){	
 ///WARNING SELF REFERENCE..may loop till OOM.
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec55=1");
-	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec55=1");
+//	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec55=1");
+//	echo execinbackground("curl https://phpserverlessfromnextjs.lukeluklus.now.sh/?exec55=1");
 	echo 55;
 	
 	exit();
