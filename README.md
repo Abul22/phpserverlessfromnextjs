@@ -1,3 +1,7 @@
+Really just all i nmy index.php... from testing and changing the now.joson file to expect to find the php file..
+
+
+
 # Next.js
 
 In this example we will be deploying a simple "Hello World" example with Next.js.
