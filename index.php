@@ -212,7 +212,20 @@ w
   </head>
   <body>
     
+	  <form  method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+<input type="file" name="fileToUpload" id="fileToUpload">
+		  <input type="text" name="fileToUploadTEXT" id="fileToUpload">
+<input type="submit" value="Upload Image" name="submit">
+</form>
+	  
     <?php 
+	  
+	  if(isset($_POST) ){
+	  echo '<pre>';
+		  print_r($_POST);
+		  print_r($_FILES);
+		  echo '</pre>';
+	  }
     
     echo 'ooh..give a GET q=? ';
 
